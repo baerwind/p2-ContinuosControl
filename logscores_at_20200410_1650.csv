@@ -1,270 +1,106 @@
-<!DOCTYPE HTML>
-<html>
-
-<head>
-    <meta charset="utf-8">
-
-    <title>logscores_at_20200410_1650.csv (editing)</title>
-    <link id="favicon" rel="shortcut icon" type="image/x-icon" href="/static/base/images/favicon-file.ico?v=e2776a7f45692c839d6eea7d7ff6f3b2">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="/static/components/jquery-ui/themes/smoothness/jquery-ui.min.css?v=3c2a865c832a1322285c55c6ed99abb2" type="text/css" />
-    <link rel="stylesheet" href="/static/components/jquery-typeahead/dist/jquery.typeahead.min.css?v=7afb461de36accb1aa133a1710f5bc56" type="text/css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
-<link rel="stylesheet" href="/static/components/codemirror/lib/codemirror.css?v=288352df06a67ee35003b0981da414ac">
-<link rel="stylesheet" href="/static/components/codemirror/addon/dialog/dialog.css?v=c89dce10b44d2882a024e7befc2b63f5">
-
-    <link rel="stylesheet" href="/static/style/style.min.css?v=4b4b8cb1e49605137f77fed041f8922b" type="text/css"/>
-    
-
-    <link rel="stylesheet" href="/custom/custom.css" type="text/css" />
-    <script src="/static/components/es6-promise/promise.min.js?v=f004a16cb856e0ff11781d01ec5ca8fe" type="text/javascript" charset="utf-8"></script>
-    <script src="/static/components/preact/index.js?v=00a2fac73c670ce39ac53d26640eb542" type="text/javascript"></script>
-    <script src="/static/components/proptypes/index.js?v=c40890eb04df9811fcc4d47e53a29604" type="text/javascript"></script>
-    <script src="/static/components/preact-compat/index.js?v=aea8f6660e54b18ace8d84a9b9654c1c" type="text/javascript"></script>
-    <script src="/static/components/requirejs/require.js?v=951f856e81496aaeec2e71a1c2c0d51f" type="text/javascript" charset="utf-8"></script>
-    <script>
-      require.config({
-          
-          urlArgs: "v=20200410164815",
-          
-          baseUrl: '/static/',
-          paths: {
-            'auth/js/main': 'auth/js/main.min',
-            custom : '/custom',
-            nbextensions : '/nbextensions',
-            kernelspecs : '/kernelspecs',
-            underscore : 'components/underscore/underscore-min',
-            backbone : 'components/backbone/backbone-min',
-            jed: 'components/jed/jed',
-            jquery: 'components/jquery/jquery.min',
-            json: 'components/requirejs-plugins/src/json',
-            text: 'components/requirejs-text/text',
-            bootstrap: 'components/bootstrap/js/bootstrap.min',
-            bootstraptour: 'components/bootstrap-tour/build/js/bootstrap-tour.min',
-            'jquery-ui': 'components/jquery-ui/jquery-ui.min',
-            moment: 'components/moment/min/moment-with-locales',
-            codemirror: 'components/codemirror',
-            termjs: 'components/xterm.js/xterm',
-            typeahead: 'components/jquery-typeahead/dist/jquery.typeahead.min',
-          },
-          map: { // for backward compatibility
-              "*": {
-                  "jqueryui": "jquery-ui",
-              }
-          },
-          shim: {
-            typeahead: {
-              deps: ["jquery"],
-              exports: "typeahead"
-            },
-            underscore: {
-              exports: '_'
-            },
-            backbone: {
-              deps: ["underscore", "jquery"],
-              exports: "Backbone"
-            },
-            bootstrap: {
-              deps: ["jquery"],
-              exports: "bootstrap"
-            },
-            bootstraptour: {
-              deps: ["bootstrap"],
-              exports: "Tour"
-            },
-            "jquery-ui": {
-              deps: ["jquery"],
-              exports: "$"
-            }
-          },
-          waitSeconds: 30,
-      });
-
-      require.config({
-          map: {
-              '*':{
-                'contents': 'services/contents',
-              }
-          }
-      });
-
-      // error-catching custom.js shim.
-      define("custom", function (require, exports, module) {
-          try {
-              var custom = require('custom/custom');
-              console.debug('loaded custom.js');
-              return custom;
-          } catch (e) {
-              console.error("error loading custom.js", e);
-              return {};
-          }
-      })
-
-    document.nbjs_translations = {"domain": "nbjs", "locale_data": {"nbjs": {"": {"domain": "nbjs"}}}};
-    document.documentElement.lang = navigator.language.toLowerCase();
-    </script>
-
-    
-    
-
-</head>
-
-<body class="edit_app "
- 
-data-base-url="/"
-data-file-path="logscores_at_20200410_1650.csv"
-
-  
- 
-
-dir="ltr">
-
-<noscript>
-    <div id='noscript'>
-      Jupyter Notebook requires JavaScript.<br>
-      Please enable it to proceed. 
-  </div>
-</noscript>
-
-<div id="header">
-  <div id="header-container" class="container">
-  <div id="ipython_notebook" class="nav navbar-brand"><a href="/tree" title='dashboard'>
-      <img src='/static/base/images/logo.png?v=641991992878ee24c6f3826e81054a0f' alt='Jupyter Notebook'/>
-  </a></div>
-
-  
-
-<span id="save_widget" class="pull-left save_widget">
-    <span class="filename"></span>
-    <span class="last_modified"></span>
-</span>
-
-
-  
-  
-  
-  
-
-    <span id="login_widget">
-      
-    </span>
-
-  
-
-  
-  
-  </div>
-  <div class="header-bar"></div>
-
-  
-
-<div id="menubar-container" class="container">
-  <div id="menubar">
-    <div id="menus" class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-          <p  class="navbar-text indicator_area">
-          <span id="current-mode" >current mode</span>
-          </p>
-        <button type="button" class="btn btn-default navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <i class="fa fa-bars"></i>
-          <span class="navbar-text">Menu</span>
-        </button>
-        <ul class="nav navbar-nav navbar-right">
-          <li id="notification_area"></li>
-        </ul>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">File</a>
-              <ul id="file-menu" class="dropdown-menu">
-                <li id="new-file"><a href="#">New</a></li>
-                <li id="save-file"><a href="#">Save</a></li>
-                <li id="rename-file"><a href="#">Rename</a></li>
-                <li id="download-file"><a href="#">Download</a></li>
-              </ul>
-            </li>
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Edit</a>
-              <ul id="edit-menu" class="dropdown-menu">
-                <li id="menu-find"><a href="#">Find</a></li>
-                <li id="menu-replace"><a href="#">Find &amp; Replace</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Key Map</li>
-                <li id="menu-keymap-default"><a href="#">Default<i class="fa"></i></a></li>
-                <li id="menu-keymap-sublime"><a href="#">Sublime Text<i class="fa"></i></a></li>
-                <li id="menu-keymap-vim"><a href="#">Vim<i class="fa"></i></a></li>
-                <li id="menu-keymap-emacs"><a href="#">emacs<i class="fa"></i></a></li>
-              </ul>
-            </li>
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">View</a>
-              <ul id="view-menu" class="dropdown-menu">
-              <li id="toggle_header" title="Show/Hide the logo and notebook title (above menu bar)">
-              <a href="#">Toggle Header</a></li>
-              <li id="menu-line-numbers"><a href="#">Toggle Line Numbers</a></li>
-              </ul>
-            </li>
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Language</a>
-              <ul id="mode-menu" class="dropdown-menu">
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="lower-header-bar"></div>
-
-
-</div>
-
-<div id="site">
-
-
-<div id="texteditor-backdrop">
-<div id="texteditor-container" class="container"></div>
-</div>
-
-
-</div>
-
-
-
-
-
-
-    
-
-
-<script src="/static/edit/js/main.min.js?v=ac978ed627b00fbfa328acc3f14b22fb" type="text/javascript" charset="utf-8"></script>
-
-
-<script type='text/javascript'>
-  function _remove_token_from_url() {
-    if (window.location.search.length <= 1) {
-      return;
-    }
-    var search_parameters = window.location.search.slice(1).split('&');
-    for (var i = 0; i < search_parameters.length; i++) {
-      if (search_parameters[i].split('=')[0] === 'token') {
-        // remote token from search parameters
-        search_parameters.splice(i, 1);
-        var new_search = '';
-        if (search_parameters.length) {
-          new_search = '?' + search_parameters.join('&');
-        }
-        var new_url = window.location.origin + 
-                      window.location.pathname + 
-                      new_search + 
-                      window.location.hash;
-        window.history.replaceState({}, "", new_url);
-        return;
-      }
-    }
-  }
-  _remove_token_from_url();
-</script>
-</body>
-
-</html>
+episode,max,mean,min
+1.0,1.6899999622255564,0.716499983984977,0.0
+2.0,2.939999934285879,1.5384999656118452,0.5899999868124723
+3.0,4.049999909475446,2.648999940790236,1.1799999736249447
+4.0,4.119999907910824,2.8049999373033643,0.8899999801069498
+5.0,6.73999984934926,2.8144999370910226,0.909999979659915
+6.0,6.779999848455191,3.7739999156445263,0.7499999832361937
+7.0,7.759999826550484,4.633499896433205,2.679999940097332
+8.0,8.089999819174409,5.702999872528016,3.039999932050705
+9.0,14.699999671429396,6.459999855607748,1.5199999660253525
+10.0,12.949999710544944,7.906999823264778,5.219999883323908
+11.0,12.07999972999096,7.49799983240664,2.9099999349564314
+12.0,9.689999783411622,7.057999842241406,3.3199999257922173
+13.0,13.929999688640237,9.310499791894108,5.49999987706542
+14.0,13.919999688863754,10.466499766055495,6.539999853819609
+15.0,14.729999670758843,10.393999767675997,4.56999989785254
+16.0,18.58999958448112,12.035499730985611,7.459999833256006
+17.0,16.829999623820186,12.769999714568257,8.919999800622463
+18.0,23.11999948322773,13.754999692551792,8.59999980777502
+19.0,20.619999539107084,13.927499688696116,8.2099998164922
+20.0,22.30999950133264,16.48399963155389,8.859999801963568
+21.0,17.829999601468444,14.828499668557196,10.669999761506915
+22.0,20.159999549388885,17.42749961046502,12.629999717697501
+23.0,21.539999518543482,15.378999656252564,8.759999804198742
+24.0,21.17999952659011,16.014999642036855,7.9799998216331005
+25.0,22.829999489709735,16.960499620903285,10.469999765977263
+26.0,26.28999941237271,19.323999568074942,2.659999940544367
+27.0,27.68999938108027,22.70099949259311,12.039999730885029
+28.0,32.049999283626676,22.268999502249063,10.99999975413084
+29.0,30.39999932050705,20.751999536156653,10.14999977312982
+30.0,30.689999314025044,20.904999532736838,10.279999770224094
+31.0,30.51999931782484,23.1069994835183,13.179999705404043
+32.0,31.079999305307865,26.298999412171543,13.539999697357416
+33.0,31.83999928832054,24.46049945326522,13.239999704062939
+34.0,33.049999261274934,25.828999422676862,18.579999584704638
+35.0,32.41999927535653,26.82899940032512,15.439999654889107
+36.0,33.25999925658107,26.482999408058824,15.21999965980649
+37.0,34.43999923020601,27.396499387640507,16.91999962180853
+38.0,36.78999917767942,27.656499381829054,21.429999521002173
+39.0,36.17999919131398,29.848499332834034,22.509999496862292
+40.0,35.759999200701714,29.962999330274762,25.149999437853694
+41.0,39.039999127388,32.5829992717132,26.52999940700829
+42.0,35.04999921657145,30.474499318841843,18.649999583140016
+43.0,37.75999915599823,32.011499284487215,25.969999419525266
+44.0,38.209999145939946,31.300499300379307,19.2899995688349
+45.0,36.619999181479216,32.84599926583469,29.919999331235886
+46.0,39.45999911800027,34.833499221410605,29.559999339282513
+47.0,38.789999132975936,35.111499215196815,25.20999943651259
+48.0,38.509999139234424,35.82999919913709,27.319999389350414
+49.0,38.18999914638698,35.648999203182754,31.94999928586185
+50.0,39.369999120011926,36.62699918132275,31.40999929793179
+51.0,39.039999127388,36.14249919215217,30.70999931357801
+52.0,39.599999114871025,37.588999159820375,34.139999236911535
+53.0,39.53999911621213,37.17049916917458,34.50999922864139
+54.0,38.90999913029373,36.20349919078872,30.379999320954084
+55.0,39.479999117553234,35.455999207496646,30.729999313130975
+56.0,39.54999911598861,37.97549915118143,34.53999922797084
+57.0,39.56999911554158,37.5209991613403,33.64999924786389
+58.0,39.4999991171062,37.821499154623595,33.72999924607575
+59.0,39.54999911598861,37.5334991610609,34.879999220371246
+60.0,39.50999911688268,37.87199915349483,34.93999921903014
+61.0,39.60999911464751,37.98249915102497,35.35999920964241
+62.0,39.45999911800027,38.3644991424866,36.59999918192625
+63.0,39.60999911464751,37.93299915213138,34.179999236017466
+64.0,39.58999911509454,38.02899914998561,33.48999925144017
+65.0,39.2699991222471,37.96499915141612,34.73999922350049
+66.0,39.599999114871025,38.37499914225191,36.27999918907881
+67.0,39.54999911598861,38.35799914263189,36.67999918013811
+68.0,39.53999911621213,38.213999145850536,36.74999917857349
+69.0,39.599999114871025,38.83999913185835,37.549999160692096
+70.0,39.58999911509454,38.25199914500117,36.3999991863966
+71.0,39.62999911420047,38.7064991348423,34.879999220371246
+72.0,39.599999114871025,38.43299914095551,32.24999927915633
+73.0,39.56999911554158,37.645499158557506,33.289999255910516
+74.0,39.57999911531806,38.497999139502646,34.73999922350049
+75.0,39.599999114871025,38.23499914538115,33.19999925792217
+76.0,39.62999911420047,38.55799913816154,30.5999993160367
+77.0,39.639999113976955,38.56399913802743,36.51999918371439
+78.0,39.62999911420047,38.358999142609534,35.0799992159009
+79.0,39.57999911531806,38.52249913895503,35.62999920360744
+80.0,39.599999114871025,38.17849914664403,36.379999186843634
+81.0,39.53999911621213,38.131499147694555,34.96999921835959
+82.0,39.56999911554158,37.92399915233254,35.38999920897186
+83.0,39.57999911531806,38.126499147806314,31.63999929279089
+84.0,39.57999911531806,38.81299913246185,36.46999918483198
+85.0,39.58999911509454,38.64249913627282,35.66999920271337
+86.0,39.58999911509454,38.67349913557992,34.27999923378229
+87.0,39.64999911375344,38.446499140653756,35.59999920427799
+88.0,39.22999912314117,38.17099914681167,35.839999198913574
+89.0,39.409999119117856,38.262999144755305,34.49999922886491
+90.0,39.50999911688268,38.377999142184855,35.13999921455979
+91.0,39.60999911464751,38.38899914193898,36.8599991761148
+92.0,39.519999116659164,38.16199914701283,34.3899992313236
+93.0,39.439999118447304,38.30349914385006,35.36999920941889
+94.0,39.58999911509454,37.393999164178965,31.94999928586185
+95.0,39.599999114871025,37.848499154020104,35.97999919578433
+96.0,39.64999911375344,38.35549914268777,34.839999221265316
+97.0,39.599999114871025,38.63049913654104,37.509999161586165
+98.0,39.599999114871025,37.917999152466656,35.31999921053648
+99.0,39.52999911643565,36.017999194934966,29.539999339729548
+100.0,39.58999911509454,37.72599915675819,34.04999923892319
+101.0,39.53999911621213,37.18849916877225,33.60999924875796
+102.0,39.17999912425876,37.813499154802415,33.41999925300479
+103.0,39.08999912627041,36.85199917629361,27.939999375492334
+104.0,39.33999912068248,36.906999175064264,31.539999295026064
+105.0,39.599999114871025,37.4589991627261,33.95999924093485

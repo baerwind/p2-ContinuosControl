@@ -10,10 +10,16 @@ Using a policy-based approach, the agent (actor) learns how to act by directly e
 
 You can find the actor-critic logic implemented as part of the `Agent()` class in `ddpg_agent.py` of the source code. The actor-critic models can be found via their respective `Actor()` and `Critic()` classes in `models.py`.
 
+
+
 A ReplayBuffer in `class ReplayBuffer` and the Ornstein-Uhlenbeck process in `class OUNoise` are implemented.
-The use of the ReplayBuffer changed from every timestep to interval controled by `LEARN_EVERY` and `LEARN_NUM`, because the learning rate was very slow.
+The use of the ReplayBuffer was changed from every timestep to an interval controled by `LEARN_EVERY` and `LEARN_NUM`, because the learning rate was very slow.
+LEARN_EVERY = 20
+LEARN_NUM = 10
 
 An epsilon process implemented in the `Agent.act()` method in `ddpg_agent.py` of the source code. with an epsilon decay as part of the learning step.
+EPSILON = 1.0
+EPSILON_DECAY = 1e-6
 
 The gradient clipping is implemented in `Agent.learn()` method, before the optimzer.step of the critic, within `ddpg_agent.py` of the source code with:
 ```python
